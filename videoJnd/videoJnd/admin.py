@@ -324,7 +324,7 @@ class SurveyAdmin(admin.ModelAdmin):
         return False
 
 @admin.register(InterfaceText)
-class InterfaceTextAdmin(admin.ModelAdmin):
+class InterfaceText(admin.ModelAdmin):
 
     def has_add_permission(self, request):
         """ only one 'instruction' object can be created """
