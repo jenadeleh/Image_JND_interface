@@ -19,15 +19,15 @@ export function reqLoadVideos(workerid, puid, euid) {
 
   sendMsg(data).then(response => {
     if (response["status"] == "successful") {
+      console.log("THE RESPONSE ", response)
       globalStatus.download_time = response["data"]["download_time"];
       globalStatus.wait_time = response["data"]["wait_time"];
       globalStatus.videos_pairs = response["data"]["videos_pairs"];
-      globalStatus.task_num = globalStatus.videos_pairs["distortion"].length 
-                              + globalStatus.videos_pairs["flickering"].length;
+      globalStatus.task_num = globalStatus.videos_pairs["flickering"].length;
       globalStatus.finished_assignment_num = response["data"]["finished_assignment_num"];
 
-      globalStatus.flickering_test_description = globalStatus.flickering_test_description.replace("NUM", globalStatus.task_num/2)
-      globalStatus.quality_test_description = globalStatus.quality_test_description.replace("NUM", globalStatus.task_num/2)
+      globalStatus.flickering_test_description = globalStatus.flickering_test_description.replace("NUM", globalStatus.task_num)
+      // globalStatus.quality_test_description = globalStatus.quality_test_description.replace("NUM", globalStatus.task_num/2)
 
       _extract_videos_url(globalStatus.videos_pairs);
       updateProgressBar(0, globalStatus.task_num);

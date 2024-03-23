@@ -64,7 +64,7 @@ function _render_interface_text(response_data) {
     instruction, 
     consent_form, 
     flickering_question,
-    distortion_question,
+    // distortion_question,
     text_end_hit, 
     text_end_exp, 
     btn_text_end_hit, 
@@ -84,9 +84,9 @@ function _render_interface_text(response_data) {
   globalStatus.training_description = training_description;
   globalStatus.training_description = quiz_description;
   globalStatus.flickering_test_description = flickering_test_description;
-  globalStatus.quality_test_description = quality_test_description;
+  // globalStatus.quality_test_description = quality_test_description;
   globalStatus.flickering_question = flickering_question;
-  globalStatus.distortion_question = distortion_question;
+  // globalStatus.distortion_question = distortion_question;
   globalStatus.study_hit_url = study_hit_url;
   globalStatus.text_end_hit = text_end_hit;
   globalStatus.text_end_hit_no_avl = text_end_hit_no_avl;

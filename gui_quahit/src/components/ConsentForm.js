@@ -19,14 +19,10 @@ export function submitCf(workerid) {
 
 export function passCF_action() {
     $("#cf-panel").css("display", "none");
+    calibration();
     checkCaliStatus();
-    if (getLocalData("hasCalibrated") == "true") {
-        passCali();
-        globalStatus.exp_status = "dist_panel"
-    } else { // need to do calibration
-        $("#cali-panel").css("display", "inline");
-        calibration();
-    }
+    passCali();
+    globalStatus.exp_status = "dist_panel"
 }
 
 function _process_response(response) {
@@ -61,7 +57,7 @@ function _render_interface_text(response_data) {
     training_description,
     quiz_description,
     flickering_test_description,
-    quality_test_description,
+    // quality_test_description,
     quiz_videos, 
     training_videos,
     euid,
@@ -79,13 +75,15 @@ function _render_interface_text(response_data) {
     survey_btn_text,
   } = response_data
 
+  console.log(training_videos)
+
   storeLocalData("euid", euid);
   globalStatus.download_time = download_time;
   globalStatus.wait_time = wait_time;
   globalStatus.training_description = training_description;
   globalStatus.quiz_description = quiz_description;
   globalStatus.flickering_test_description_template = flickering_test_description;
-  globalStatus.quality_test_description_template = quality_test_description;
+  // globalStatus.quality_test_description_template = quality_test_description;
   globalStatus.training_videos = training_videos;
   globalStatus.quiz_videos = quiz_videos;
   globalStatus.download_timeout_msg = download_timeout_msg;

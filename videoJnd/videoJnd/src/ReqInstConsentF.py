@@ -37,7 +37,7 @@ def req_inst_cf(recv_data:dict) -> dict:
                 "training_description": interface_text.training_description,
                 "quiz_description": interface_text.quiz_description,
                 "flickering_test_description": interface_text.flickering_test_description,
-                "quality_test_description": interface_text.quality_test_description,
+                # "quality_test_description": interface_text.quality_test_description,
                 "no_decision_training_msg": interface_text.no_decision_training_msg,
                 "study_hit_url": interface_text.study_hit_url,
                 "survey_btn_text":interface_text.survey_btn_text,

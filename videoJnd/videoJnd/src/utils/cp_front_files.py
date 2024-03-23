@@ -3,8 +3,8 @@ from pathlib import Path
 import shutil
 
 if __name__ == "__main__":
-    hit = "studyhit"
-    # hit = "quahit"
+    # hit = "studyhit"
+    hit = "quahit"
 
 
     js_path = Path("../../static/js/")

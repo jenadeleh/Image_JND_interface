@@ -342,12 +342,12 @@ class InterfaceText(models.Model):
         null=False, 
         blank=False
     )
-    quality_test_description = RichTextField(
-        "Quality test description", 
-        default="Quality test description", 
-        null=False, 
-        blank=False
-    )
+    # quality_test_description = RichTextField(
+    #     "Quality test description", 
+    #     default="Quality test description", 
+    #     null=False, 
+    #     blank=False
+    # )
 
     study_hit_url = models.URLField(max_length=200, default="")
 
