@@ -108,7 +108,7 @@ export function isCorrectResolution() {
 
 export function reso_warnings() {
     return `Your monitor resolution (${screen.height}x${screen.height}) does not fulfill the requirement. 
-    The correct resolution should be width>=1366 and height>=768.`;
+    The correct resolution should be width>=1920 and height>=1080.`;
 }
 
 export function showWarningCover(message) {

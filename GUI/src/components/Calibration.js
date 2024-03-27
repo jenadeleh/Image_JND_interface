@@ -128,6 +128,8 @@ export function recordCaliStartTime() {
 }
 
 function _scaleMediaSize() {
+
+    console.log("THIS FUNCTION SHOULD NEVER BE CALLED")
     // var frame_height = $(".card-area").height();
     // w=53.98 mm, h=85.60mm. ISO 7810
     // var image_width = 0.6 * document.documentElement.clientWidth; //20%, 20%

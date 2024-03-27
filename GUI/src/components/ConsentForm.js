@@ -75,7 +75,7 @@ function _render_interface_text(response_data) {
     training_description,
     quiz_description,
     flickering_test_description,
-    quality_test_description,
+    // quality_test_description,
     study_hit_url,
     text_end_hit_no_avl,
     survey_btn_text,
@@ -105,7 +105,7 @@ function _render_interface_text(response_data) {
 
 function _render_instruction(instruction) {
   $(".instruction-content").html(instruction);
-  globalStatus.exp_status = "inst_panel";
+  // globalStatus.exp_status = "inst_panel";
   if (globalStatus.mode == "production") {
     $("#instruction-modal").css("display", "inline");
     $("#instruction-modal").modal("show");

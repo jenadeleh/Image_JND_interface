@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -218,60 +220,66 @@
         </div>
     </div>
 
+    <!-- <div id="cali-panel" class="exp-panel">
+        <h3>Calibration</h3>
+        <h4>To increase the accuracy of your work, please do the calibration before the experiment. <br><br>Please prepare a bank-card, or something with a similar size. Use keyboard &#x2191; and &#x2193;, or click button &#x2191; and &#x2193; to adjust the frame until the frame fits the card size.<br>
+          <br>For Mac touchpad users, please use a hard-press (called Force click) to click the buttons. </h4>
+        <div style="vertical-align: middle;">
 
-    <div id="dist-panel" class="exp-panel">
-      <!-- <div>
-        <img style="width: 400px; height: 400px;" src="https://media.mmsp-kn.de/image-JND/jnd_video/instruction/distance.png">
+          <img alt="calibration example" src="https://media.mmsp-kn.de/image-JND/jnd_video/instruction/calibration_exp.png">
+        </div>
+        <hr>
+        <div>
+          <button type="button" id="cali-inst-btn" class="btn btn-info ctl" data-toggle="modal" href="#cali-inst-modal">How?</button>&nbsp;
+          <button type="button" id="cali-zoom-in-btn" class="btn btn-warning ctl">&#x2191; Increasing</button>&nbsp;
+          <button type="button" id="cali-zoom-out-btn" class="btn btn-primary ctl">&#x2193; Decreasing</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <button type="button" id="cali-fit-btn" class="btn btn-success ctl">&radic;&nbsp;  fitted</button>
+        </div>
+        <br>
+        <div id="cali-frame" style="text-align:left;">
+          <h5>&#x2190;place your card on the left</h5>
+        </div>
+        <br>
+    </div> -->
+    <div id="dist-panel"  style="display: block; width: 80%;">
+      <h1 style="text-align: center; font-size: 4.5em;">Please Adjust Your Position. </h1>
+      <div class="box" style="margin-top: 20%">
+          <div style="margin-left: 30px; margin-right: 30px; font-size: 1.2em;">
+              <div style="display:flex; flex-direction: row; flex-wrap:wrap; justify-content:space-evenly; margin: 0; ">
+                  <div style="display:flex; flex-direction: column; flex-wrap:wrap; justify-content:space-evenly; margin: 0; ">
+                      <span id="crossMark" style="text-align: center">&#10060</span>
+                      <img src="{% static 'images/leanForward.jpg' %}" alt="Leaning Forward">
+                    </div>
+                  <div style="display:flex; flex-direction: column; flex-wrap:wrap; justify-content:space-evenly; margin: 0; ">
+                      <span id="crossMark" style="text-align: center">&#10060</span>
+                      <img src="{% static 'images/leanBackward.jpg' %}" alt="Leaning Backward">
+                    </div>
+                  <div style="display:flex; flex-direction: column; flex-wrap:wrap; justify-content:space-evenly; margin: 0; ">
+                      <span id="checkMark" style="text-align: center">&#9989</span>
+                      <img src="{% static 'images/straight.jpg' %}" alt="Straight">
+                    </div>
+              </div>
+          </div>
+          <div style=" display: block; text-align: center; margin-bottom:20px; margin-top:50px">
+              <!-- <button id="adjustPositionProceed" type="submit">Next</button> -->
+              <button type="button" id="cali-adjust-dist" class="btn btn-success ctl">Next.</button>
+
+          </div>
       </div>
-      <br>
-      <h4 id="dist-value"></h4>
-      <p>Reference length</p>
-      <p>A4 Paper: 21cm x 29.7cm (8.3inch x 11.7inch)</p>
-      <p id="dist-browser-width"></p>
-      -->
-    
-      <div style="margin-left: 30px; margin-right: 30px; font-size: 1.2em;">
-        <p style="margin-block: 0.5em 0; text-align: justify; text-justify: inter-word;">The following display and
-            environment characteristics were detected:</p>
-        <div style="display: flex; flex-shrink: 0; flex-grow: 0; justify-content:flex-start; flex-direction:row">
-            <p style="margin-block: 0.5em 0; text-align: justify; text-justify: inter-word;"> 1. Screen resolution:
-            <div style="display: inline-block; align-content: center" id="screensize"> </div>
-            </p>
-        </div>
-        <div style="display: flex; flex-shrink: 0; flex-grow: 0; justify-content:flex-start; flex-direction:row">
-            <p style="margin-block: 0.5em 0; text-align: justify; text-justify: inter-word;"> 2. Window resolution:
-            <div style="display: inline-block; align-content: center" id="windowSize"></div>
-            </p>
-        </div>
-        <p style="margin-block: 0.5em 0; text-align: justify; text-justify: inter-word;">Please follow carefully the
-            checklist below in order to advance:</p>
-        <ol>
-            <li>Mobil phones and tablets are not supported. <span
-                    style="justify-content: center; align-content: center" id="screenCheckMark"></span></li>
-            <li>If the screen resolution showed above is lower than 1920x1080 pixels, follow these steps to adjust
-                the display resolution:<p style="margin-left:40px;">a. For Windows: Right-click on the desktop and
-                    choose "Display Settings."Adjust the scale and layout to 100%. Then, under "Display Resolution,"
-                    select an option equal to or larger than 1920x1080.</p>
-                <p style="margin-left:40px;">b. For Mac: Open "System Preferences", click on "Displays", hold down
-                    the "Option" key on your keyboard. While holding "Option," click on "Scaled", the additional
-                    resolutions will appear. Choose a resolution from the list that is equal to or larger than
-                    1920x1080.</p>
-                <p style="margin-left:40px;">c. For Linux: Go to "Settings" and click on "Displays". Under
-                    "Resolution," select an option that is equal to or larger than 1920x1080. Set the scale to 100%.
-                </p>
-            </li>
-            <li>Activate the full screen mode in your browser by pressing F11 on your keyboard (for windows users),
-                and Control + Command+ F (for Mac user), and hide any toolbar or bookmark bar by disabling “Always
-                Show Toolbar in Full Screen” in the View menu in your menu bar. <span id="windowCheckMark"> </span>
-            </li>
-            <li>Check your actual display to be at least 13 inches or 33cm diagonally. You will be prompted to input the display size later.</li>
-        </ol>
-      
-    </div>
-    <div>
-      <button type="button" id="cali-adjust-dist" class="btn btn-info ctl">I adjusted my distance.</button>
-    </div>
   </div>
+    <!-- <div id="dist-panel" class="exp-panel">
+        <div>
+          <img style="width: 400px; height: 400px;" src="https://media.mmsp-kn.de/image-JND/jnd_video/instruction/distance.png">
+        </div>
+        <br>
+        <h4 id="dist-value"></h4>
+        <p>Reference length</p>
+        <p>A4 Paper: 21cm x 29.7cm (8.3inch x 11.7inch)</p>
+        <p id="dist-browser-width"></p>
+        <div>
+          <button type="button" id="cali-adjust-dist" class="btn btn-info ctl">I adjusted my distance.</button>
+        </div>
+      </div> -->
 
     <div id="hit-panel" class="exp-panel">
         <div id="instruction-btn">
@@ -397,7 +405,7 @@
     </div> 
   </div>
 
-  <!-- <div class="modal fade" id="reminder-modal" tabindex="-1" role="dialog">  
+  <div class="modal fade" id="reminder-modal" tabindex="-1" role="dialog">  
     <div class="modal-dialog modal-lg">  
         <div class="modal-content">  
             <div class="modal-header">  
@@ -414,7 +422,7 @@
             </div>  
         </div>
     </div> 
-  </div> -->
+  </div>
 
 
 

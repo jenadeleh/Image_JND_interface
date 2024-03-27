@@ -22,7 +22,8 @@ export function passCF_action() {
     calibration();
     checkCaliStatus();
     passCali();
-    globalStatus.exp_status = "dist_panel"
+    $("#isihara-1-panel").css("display", "inline");
+
 }
 
 function _process_response(response) {
@@ -30,7 +31,7 @@ function _process_response(response) {
         _render_interface_text(response["data"]);
 
         if (getLocalData("didTraining") != "true") {
-            $("#inst-panel").css("display", "inline");
+            $("#screen-check").css("display", "inline");
         } else {
             $("#msg-panel").html(globalStatus.no_available_exp).css("display", "inline"); 
         }
@@ -42,6 +43,7 @@ function _process_response(response) {
 }
 
 function _render_interface_text(response_data) {
+  console.log("Repsonse Data: ", response_data)
   let {
     instruction, 
     consent_form, 
@@ -113,7 +115,7 @@ function _render_interface_text(response_data) {
 
 function _render_instruction(instruction) {
   $(".instruction-content").html(instruction);
-  globalStatus.exp_status = "inst_panel";
+  // globalStatus.exp_status = "inst_panel";
   if (globalStatus.mode == "production") {
     $("#instruction-modal").css("display", "inline");
     $("#instruction-modal").modal("show");

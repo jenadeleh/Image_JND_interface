@@ -6,9 +6,12 @@ if __name__ == "__main__":
     # hit = "studyhit"
     hit = "quahit"
 
+    print(hit)
+
 
     js_path = Path("../../static/js/")
     css_path = Path("../../static/css/")
+    images_path = Path("../../static/images/")
     html_path = Path("../../templates/")
     
     dist_path = Path(f"../../../../gui_{hit}/dist/")
@@ -47,6 +50,9 @@ if __name__ == "__main__":
     shutil.copy(dist_path / "bundle.js", js_path / bundle)
     shutil.copy(dist_path / "bundle.js.map", js_path / bundle_map)
     shutil.copy(dist_path / "css/style.css", css_path / "style.css")
+     # Kopieren Sie das gesamte Verzeichnis mit den Bildern
+     # only doing it when we have new images
+    # shutil.copytree(dist_path / "images", images_path)
     shutil.copy(dist_path / "index.html", html_path / html)
 
 

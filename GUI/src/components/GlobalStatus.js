@@ -22,8 +22,10 @@ export const globalStatus = {
     isTheSameBrowser: true,
     isNotZoomedBrowser: true,
     reso_warnings: "",
-    exp_status: "", // inst_panel:instruction is being shown, 
-                    // dist_panel:adjust distance panel is being shown, 
+    exp_status: "",
+                    // dist_panel: adjust distance panel is being shown, 
+                    // inst_panel:instruction is being shown, 
+                    // cf_form: consenst form page is shown. 
                     // hit_panel:after adjusting distance, hit is being shown, before videos are finished downloading
                     // decision: after videos are finished downloading before clicking "start experiment" button
                     // next-hit-panel: hit ends, before clicking "next assignment" button,
@@ -49,9 +51,9 @@ export const globalStatus = {
     training_description: "",
     quiz_description:"",
     flickering_test_description:"",
-    quality_test_description:"",
+    // quality_test_description:"",
     flickering_test_description_template:"",
-    quality_test_description_template:"",
+    // quality_test_description_template:"",
     coaching: false,
     curVideoDomId:"",
     flickering_question:"",

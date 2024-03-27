@@ -8,8 +8,9 @@ import { displayEndHitPanel } from "./BtnActions";
 import {shuffle} from "../utils/Shuffle"
 
 export function reqLoadVideos(workerid, euid) {
-  $("#video-pool, #video-spinner").css("height", 800)
-                                  .css("width", 1200);
+  $("#video-pool, #video-spinner").css("height", 1080)
+  .css("width", 1920);
+  
 
   if (globalStatus.session=="training") {
     globalStatus.videos_pairs = globalStatus.training_videos['flickering'];
@@ -64,7 +65,7 @@ function _addAllVideosToDom() {
     displayFirstVideo();
     clearTimeout(globalStatus.EXPIRE_TIMER);
     // console.log("----- clearTimer -----" + "download");
-    // _startCountExpireTime("wait");
+    _startCountExpireTime("wait");
   });
 }
 
@@ -76,7 +77,6 @@ export function displayNextVideo() {
 
     // display next video
     let cur_video_pair = globalStatus.videos_pairs_sequence.shift();
-    
 
     let videoDomId = constructDomId(cur_video_pair);
     globalStatus.curVideoDomId = videoDomId;
@@ -88,6 +88,7 @@ export function displayNextVideo() {
 
     $(`#left-${videoDomId}`).get(0).play();
     $(`#right-${videoDomId}`).get(0).play();
+    recordTime();
 
       // console.log("--- next video ---")
       // console.log(globalStatus.cur_video["source_video"])
@@ -196,10 +197,14 @@ function _addVideosPairHtml() {
     globalStatus.videos_pairs.forEach(function(pair,key2,arr2){
       let ref_video = pair["ref_video"];
       let crf = pair["crf"];
-      console.log(ref_video)
-
+      
       let url_left =  globalStatus.videos_url_mapping[pair["videos_pair"][0]];
       let url_right =  globalStatus.videos_url_mapping[pair["videos_pair"][1]];
+      console.log("LEFT ", url_left)
+      console.log("RIGHT ", url_right)
+
+      console.log("Video Height ", globalStatus.video_h)
+      console.log("Video Width ", globalStatus.video_w)
 
       let video_pair_html = `
         <div class="video-cover"

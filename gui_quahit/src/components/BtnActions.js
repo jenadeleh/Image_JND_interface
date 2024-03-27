@@ -154,7 +154,7 @@ export function processHit() {
 export function adjustDist() {
   _displatStartTrainingMsg();
   $("#dist-panel").css("display", "none");
-  $("#hit-panel").css("display", "inline");
+  $("#hit-panel").css("display", "block");
   // actNextHitBtn();
 }
 
@@ -174,7 +174,6 @@ export function readInst() {
     $("#ask-for-wid").html("Please confirm your worker ID.")
     $("#cf-workerid").val(getLocalData("workerid"))
   }
-  
   $("#cf-panel").css("display", "inline");
 }
 
@@ -356,3 +355,77 @@ function _sendResult() {
     }
   });
 }
+
+document.getElementById('proceed').addEventListener('click', (e) => {
+  // Updating the main page after the button was clicked
+  // toggling hidden content on space 
+  $("#screen-check").css("display", "none");
+  $("#adjust-position-panel").css("display", "inline");
+  globalStatus.exp_status == "adjust-position-panel"
+
+})
+
+document.getElementById('adjustPositionProceed').addEventListener('click', () => {
+  // Updating the main page after the button was clicked
+  $("#adjust-position-panel").css("display", "none");
+  $("#inst-panel").css("display", "inline");
+  globalStatus.exp_status == "inst_panel"
+})
+
+document.getElementById('isihara-1-button').addEventListener('click', () => {
+  // Updating the main page after the button was clicked
+  $("#isihara-1-panel").css("display", "none");
+  $("#dist-panel").css("display", "inline");
+  globalStatus.exp_status == "ishihara_2_panel"
+
+})
+
+// Ensuring user types in a number in ishihara test
+document.getElementById('plateNumber1').addEventListener('input', function() {
+  const button = document.getElementById('isihara-1-button');
+  const isValid = isValidNumber(this.value.trim());
+  if(isValid){
+    button.classList.remove('disabled')
+    button.classList.add('btn-success')
+    button.disabled = false;
+  } else {
+    button.classList.remove('btn-success')
+    button.classList.add('disabled')
+    button.disabled = true;
+  }
+});
+
+document.getElementById('plateNumber2').addEventListener('input', function() {
+  const button = document.getElementById('cali-adjust-dist');
+  const isValid = isValidNumber(this.value.trim());
+  if(isValid){
+    button.classList.remove('disabled')
+    button.classList.add('btn-success')
+    button.disabled = false;
+  } else {
+    button.classList.remove('btn-success')
+    button.classList.add('disabled')
+    button.disabled = true;
+  }
+
+  // button.style.backgroundColor = isValid ? 'green' : 'grey';
+  // button.disabled = !isValid;
+});
+
+const ishihara1 = document.querySelector('#isihara-1-button');
+const ishihara2 = document.querySelector('#cali-adjust-dist');
+
+if(ishihara1){
+  ishihara1.disabled = "true";
+}
+
+if(ishihara2) {
+  ishihara2.disabled = "true";
+}
+
+function isValidNumber(value) {
+  return /^\d+$/.test(value);
+}
+
+
+

@@ -171,3 +171,437 @@ input#cf-submit-btn{
   justify-content: center; 
   align-items: center;
 }
+
+
+/* Styles related to the Feedback Study Elements */
+/* input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    background-color: #f4fffd;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    position: relative;
+    border-radius: 100%;
+    margin: 0px;
+    margin-right: 10px;
+    margin-left: 30px;
+    align-self: center;
+} */
+
+/* input[type="radio"]:checked {
+    background-color: #009de0;
+}
+
+input[type="radio"]:checked::after {
+    display: block;
+    position: absolute;
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #f4fffd;
+    top: 7px;
+    left: 7px;
+}
+
+[type="radio"]:focus {
+    outline: none;
+}
+
+[type="radio"]:hover {
+    background-color: #fff;
+}
+
+body {
+    font-family: Arial, sans-serif;
+} */
+
+button {
+    padding: 12px 24px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    background-color: #4CAF50;
+    color: white;
+
+}
+
+button:hover {
+    background-color: #45a045;
+}
+
+.btn-test {
+    padding: 2px;
+    color: #000;
+    margin: 0 auto;
+    margin-top: 5px;
+    background: #b9eaff;
+    font-size: 2em;
+    text-align: center;
+    width: 200px;
+    height: 50px;
+    border: 1px solid #009de0;
+    border-width: 0px 0px 3px;
+    display: block;
+    border-radius: 5px;
+
+
+}
+
+.btn-test:focus {
+    outline: none;
+}
+
+.btn-test:hover {
+    background: #009de0;
+    border: 1px solid #006794;
+    border-width: 0px 0px 3px;
+
+
+}
+
+/* input[type=text] {
+    width: 250px;
+    padding: 3px 10px;
+    margin: 0;
+    margin-left: 10px;
+    resize: vertical;
+    font-size: 0.8em;
+    background-color: #f4fffd;
+    border: 0px;
+    font-family: inherit;
+}
+
+input[type=email] {
+    width: 250px;
+    padding: 3px 10px;
+    margin: 0;
+    margin-left: 10px;
+    resize: vertical;
+    font-size: 0.8em;
+    background-color: #f4fffd;
+    border: 0px;
+    font-family: inherit;
+}
+
+input[type=number] {
+    width: 70px;
+    padding: 3px;
+    text-align: center;
+    margin: 0;
+    margin-left: 10px;
+    resize: vertical;
+    font-size: 0.8em;
+    background-color: #f4fffd;
+    border: 0px;
+    font-family: inherit;
+}
+
+input[type=text]:hover,
+input[type=email]:hover,
+input[type=number]:hover {
+    border-bottom: 3px solid #009de0;
+}
+
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=number]:focus {
+    outline: none !important;
+    border-bottom: 3px solid #006794;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+} */
+
+.box {
+    background: #b9eaff;
+    padding: 10px;
+    margin-bottom: 40px;
+    margin-top: 0px;
+    margin-left: 30px;
+    margin-right: 30px;
+    box-shadow: 15px 15px #009de0;
+    border-radius: 10px;
+}
+
+progress {
+    background-color: #DBDDDE;
+    border-radius: 50px;
+    width: 99%;
+    height: 50%;
+    align-self: center;
+    text-align: center;
+}
+
+progress::-webkit-progress-bar {
+    background-color: #DBDDDE;
+    border-radius: 50px;
+    width: 99%;
+    height: 100%;
+    align-self: center;
+}
+
+progress::-webkit-progress-value {
+    background-color: #009de0 !important;
+    border-radius: 50px;
+    height: 100%;
+}
+
+progress::-moz-progress-bar {
+    background-color: #009de0 !important;
+    border-radius: 50px;
+    height: 100%;
+}
+
+.img-test:hover {
+    border: 1px solid #940000;
+    border-width: 3px 3px 3px;
+}
+
+.img-go {
+    border: 4px solid #940000;
+    border-width: 4px 4px 4px;
+}
+
+#screensize {
+    width: 120px;
+    padding: 10px 0;
+    color: #070707;
+    font-family: inherit;
+    font-size: 20px;
+    text-align: center;
+}
+
+#windowSize {
+    width: 120px;
+    padding: 10px 0;
+    color: #070707;
+    font-family: inherit;
+    font-size: 20px;
+    text-align: center;
+}
+
+
+input.right {
+    float: right;
+}
+
+.imageL {
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+
+.imageR {
+    position: relative;
+    top: 0px;
+    left: 0px;
+
+}
+
+.btn-skip {
+    padding: 2px;
+    color: #000;
+    margin: 0 auto;
+    margin-top: 5px;
+    background: #b9eaff;
+    font-size: 2em;
+    text-align: center;
+    width: 200px;
+    height: 50px;
+    border: 1px solid #009de0;
+    border-width: 0px 0px 3px;
+    display: none;
+    border-radius: 5px;
+}
+
+.btn-skip:focus {
+    outline: none;
+}
+
+.btn-skip:hover {
+    background: #009de0;
+    border: 1px solid #006794;
+    border-width: 0px 0px 3px;
+}
+
+/* .age-selector {
+    width: 250px;
+    padding: 3px;
+    text-align: center;
+    margin: 0;
+    margin-left: 10px;
+    resize: vertical;
+    font-size: 0.8em;
+    background-color: #f4fffd;
+    border: 0px;
+    font-family: inherit;
+} */
+
+
+/* IMAGE STYLES */
+/* [type=radio]+img {
+    cursor: pointer;
+}
+
+/* CHECKED STYLES */
+[type=radio]:checked+img {
+    outline: 2px solid #f00;
+} */
+
+.inner {
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+
+
+
+.acceptButton {
+    /* padding: 12px 24px;
+margin: 10px;
+border: none;
+cursor: pointer;
+font-size: 18px;
+border-radius: 5px;
+transition: background-color 0.3s ease; */
+    background-color: #4CAF50;
+    color: white;
+}
+
+.acceptButton:hover {
+    background-color: #45a045;
+}
+
+.btn-disable {
+    /* padding: 12px 24px;
+margin: 10px;
+border: none;
+cursor: pointer;
+font-size: 18px;
+border-radius: 5px;
+transition: background-color 0.3s ease; */
+    background-color: #cccccc;
+    color: white;
+}
+
+.btn-disable:hover {
+    background-color: #cccccc;
+    ;
+}
+
+.cancelButton {
+    /* padding: 12px 24px;
+margin: 10px;
+border: none;
+cursor: pointer;
+font-size: 18px;
+border-radius: 5px;
+transition: background-color 0.3s ease; */
+    background-color: #f44336;
+    color: white;
+}
+
+.cancelButton:hover {
+    background-color: #d1392a;
+}
+
+.instructionButton {
+    /* padding: 12px 24px;
+margin: 10px;
+border: none;
+cursor: pointer;
+font-size: 18px;
+border-radius: 5px;
+transition: background-color 0.3s ease; */
+    background-color: #f44336;
+    color: white;
+}
+
+.base-timer {
+    position: relative;
+    width: 300px;
+    height: 300px;
+}
+
+.base-timer__svg {
+    transform: scaleX(-1);
+}
+
+.base-timer__circle {
+    fill: none;
+    stroke: none;
+}
+
+.base-timer__path-elapsed {
+    stroke-width: 7px;
+    stroke: grey;
+}
+
+.base-timer__path-remaining {
+    stroke-width: 7px;
+    stroke-linecap: round;
+    transform: rotate(90deg);
+    transform-origin: center;
+    transition: 1s linear all;
+    fill-rule: nonzero;
+    stroke: currentColor;
+}
+
+.base-timer__path-remaining {
+    color: rgb(65, 184, 131);
+}
+
+.base-timer__path-remaining.green {
+    color: rgb(65, 184, 131);
+}
+
+.base-timer__path-remaining.orange {
+    color: orange;
+}
+
+.base-timer__path-remaining.red {
+    color: red;
+}
+
+.base-timer__label {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+}
+
+ol {
+    counter-reset: item;
+}
+
+ol>li {
+    counter-increment: item;
+}
+
+ol ol>li {
+    display: block;
+}
+
+ol ol>li:before {
+    content: counters(item, ".") ". ";
+    margin-left: -20px;
+}

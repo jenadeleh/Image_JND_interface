@@ -8,9 +8,8 @@ import { readInst, actStartExpBtn, adjustDist, addResultToCurVideo, processHit, 
 export function keyboardControl(){
     document.onkeyup = function (event) {
         var e = event || window.event;
-        var keyCode = e.keyCode || e.which || e.code;
+        var keyCode = e.keyCode || e.which || e.code;   
         switch (keyCode) {
-            case 13://space
             case 32://enter
                 if(globalStatus.exp_status == "inst_panel") {
                     readInst();
@@ -24,7 +23,7 @@ export function keyboardControl(){
                 ) {
                     actNextHitBtn();
                 }
-                break;
+            //     break;
             
             case 37: // left arrow
                 if(

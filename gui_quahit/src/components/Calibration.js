@@ -2,6 +2,8 @@ import * as $ from 'jquery';
 import { storeLocalData, getLocalData } from "../utils/ManageLocalData";
 import { config } from "./Configuration"; 
 import { globalStatus } from "./GlobalStatus";
+import { showWarningCover } from './Environment';
+
 
 export function calibration() {
         if (getLocalData("hasCalibrated") === null) {
@@ -60,9 +62,10 @@ export function passCali() {
     let browser_width_cm = getLocalData("browser_width_cm");
     let browser_width_inches = Math.ceil(browser_width_cm*0.393701)
 
-    $("#dist-browser-width").html(`Browser width: ${browser_width_cm} cm (${browser_width_inches} inches)`);
-    $("#dist-value").html(`Please adjust your distance. Distance=${config.DISTANCE} cm (${(config.DISTANCE*0.393701).toFixed(0) } inches)`);
-    $("#dist-panel").css("display", "inline");
+    // $("#dist-browser-width").html(`Browser width: ${browser_width_cm} cm (${browser_width_inches} inches)`);
+    // $("#dist-value").html(`Please adjust your distance. Distance=${config.DISTANCE} cm (${(config.DISTANCE*0.393701).toFixed(0) } inches)`);
+    globalStatus.exp_status = "ishihara_1_panel";
+    $("#isihara-1-panel").css("display", "inline");
 }
 
 function incCaliFrame() {
@@ -128,6 +131,7 @@ export function recordCaliStartTime() {
 }
 
 function _scaleMediaSize() {
+    console.log("THIS FUNCTION SHOULD NEVER BE CALLED")
     // var frame_height = $(".card-area").height();
     // w=53.98 mm, h=85.60mm. ISO 7810
     // var image_width = 0.6 * document.documentElement.clientWidth; //20%, 20%
@@ -161,5 +165,136 @@ function _scaleMediaSize() {
         $("#reminder-modal").modal("show");
     }
 }
+
+
+// This script detecs the screen and window, and the browser resolution. 
+// It checks if the screen and window resolution are at least full hd and equall to each other.
+
+var offset = 100;
+var browserName = (function (agent) {
+    switch (true) {
+        case agent.indexOf("edge") > -1: return "MS Edge";
+        case agent.indexOf("edg/") > -1: return "Edge ( chromium based)";
+        case agent.indexOf("opr") > -1 && !!window.opr: return "Opera";
+        case agent.indexOf("chrome") > -1 && !!window.chrome: return "Chrome";
+        case agent.indexOf("trident") > -1: return "MS IE";
+        case agent.indexOf("firefox") > -1: return "Mozilla Firefox";
+        case agent.indexOf("safari") > -1: return "Safari";
+        case agent.indexOf("brave") > -1: return "Brave";
+        default: return "other";
+    }
+})(window.navigator.userAgent.toLowerCase());
+
+
+
+// window.addEventListener("load", event => {
+//     // Only google Chrome is allowed
+//     if (browserName != 'Chrome') {
+//         document.getElementById("hTag").innerHTML = "Chrome browser is required in order to advance. Your browser is " + browserName;
+//         // document.getElementById("browserNameTag").innerHTML = browserName + " was detected";
+//         document.getElementById("mainDiv").setAttribute("hidden", "hidden")
+//     }
+
+// });
+
+
+function windowCheck(realWindowWidth, realWindowHeight) {
+
+    // Window size does not met the requirements
+    if (realWindowWidth < 1920 || realWindowHeight < 1080) {
+        document.getElementById("windowCheckMark").innerHTML = '&#10060';
+    }
+
+    // Window size met the requirements
+    if (realWindowWidth >= 1920 && realWindowHeight >= 1080) {
+        document.getElementById("windowCheckMark").innerHTML = '&#9989';
+    }
+
+    // Inform the users about their window size (If full screen or not)
+    var windowSize = document.getElementById("windowSize");
+    windowSize.textContent = parseInt(realWindowWidth) + "x" + parseInt(realWindowHeight);
+}
+
+function screenCheck(realScreenWidth, realscreenHeight) {
+
+    // Screen  size does not met the requirements
+    if (realScreenWidth < 1920 || realscreenHeight < 1080) {
+        document.getElementById("windowCheckMark").innerHTML = '&#10060';
+    }
+
+    // Screen size met the requirements
+    if (realScreenWidth >= 1920 && realscreenHeight >= 1080) {
+        document.getElementById("screenCheckMark").innerHTML = '&#9989';
+    }
+
+    // Inform the users about their screen size 
+    var screensize = document.getElementById("screensize");
+    screensize.textContent = parseInt(realScreenWidth) + "x" + parseInt(realscreenHeight);
+}
+
+function screenAndWindowCheck() {
+    const realScreenWidth = window.screen.width;
+    const realscreenHeight = window.screen.height;
+
+    var realWindowWidth = innerWidth;
+    var realWindowHeight = innerHeight;
+
+    // var forTest = document.getElementById("forTest");
+    // forTest.textContent = " view port is: " + window.outerHeight + "Device pixel ratio is:" + window.devicePixelRatio + " -" + "availHeight:" + window.screen.availHeight + "- " + "availWidth:" + window.screen.availWidth + "-" + "innerWidth:" + innerWidth + "- " + "innerHeight:" + innerHeight + "-" + "screen.width:" + screen.width + "-" + "screen.height:" + screen.height;
+
+
+    screenCheck(realScreenWidth, realscreenHeight);
+    // manually adjust for testing
+    realWindowHeight = realWindowHeight 
+    // windowCheck(realWindowWidth, realWindowHeight);
+    // Inform the users about their window size (If full screen or not)
+    var windowSize = document.getElementById("windowSize");
+    windowSize.textContent = parseInt(realWindowWidth) + "x" + parseInt(realWindowHeight);
+
+    // At least one of the screen or window size does not met the requirements
+    if (realWindowWidth < 1920 || realWindowHeight < 1080 || realScreenWidth < 1920 || realscreenHeight < 1080 || realWindowWidth < realScreenWidth - offset || realWindowHeight < realscreenHeight - offset) {
+        let proceedButton = document.getElementById("proceed");
+        let windowCheckMark = document.getElementById("windowCheckMark");
+
+        if(proceedButton) {
+            proceedButton.disabled = true;
+            proceedButton.style.backgroundColor = "#cccccc";
+        }
+        if(windowCheckMark) {
+            document.getElementById("windowCheckMark").innerHTML = '&#10060';
+        }
+        showWarningCover("maximize_browser");
+        globalStatus.isMaximizedBrowser = false;
+    }
+
+    // Window and screen size both met the requirements
+    if (realWindowWidth >= 1920 && realWindowHeight >= 1080 && realScreenWidth >= 1920 && realscreenHeight >= 1080 && realWindowWidth >= realScreenWidth - offset && realWindowHeight >= realscreenHeight - offset) {
+        let proceedButton = document.getElementById("proceed");
+        let windowCheckMark = document.getElementById("windowCheckMark");
+        if(proceedButton) {
+            proceedButton.disabled = false;
+            proceedButton.style.backgroundColor = "#4CAF50";
+        }
+        if(windowCheckMark) {
+            document.getElementById("windowCheckMark").innerHTML = '&#9989';
+        }
+        globalStatus.isMaximizedBrowser = true;
+
+    }
+}
+
+
+screenAndWindowCheck();
+
+
+// Update the screen and window chack after each resize
+window.addEventListener("resize", () => {
+    screenAndWindowCheck();
+
+});
+
+
+
+
 
 

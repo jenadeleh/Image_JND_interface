@@ -11,7 +11,7 @@ export function keyboardControl(){
         var keyCode = e.keyCode || e.which || e.code;
         switch (keyCode) {
             case 13://space
-            case 32://enter
+            // case 32://enter
                 if(globalStatus.exp_status == "inst_panel") {
                     readInst();
                 } else if(globalStatus.exp_status == "dist_panel") {

@@ -65,6 +65,7 @@ export function displayFirstVideo() {
 
 export function displayNextVideo() {
     // remove previous video
+    console.log("IN next video")
     let prev_video_pair = globalStatus.cur_video_pair; 
     let prev_videoDomId = constructDomId(prev_video_pair)
     $(`#vc-${prev_videoDomId}`).remove();
@@ -77,21 +78,23 @@ export function displayNextVideo() {
                           .css("z-index", 1);
     $(`#left-${videoDomId}`).get(0).play();
     $(`#right-${videoDomId}`).get(0).play();
-    if (
-      globalStatus.videos_pairs_sequence.length == globalStatus.task_num/2 - 1
-    ) { // flickering and quality
-      globalStatus.canMakeDecision = false;
-      $("#left-btn, #right-btn").attr("disabled", true);
-      $(`#left-${videoDomId}`).get(0).pause();
-      $(`#right-${videoDomId}`).get(0).pause();
-      $("#start-exp-btn").css("display", "inline-block")
-                        .attr("disabled",false);
-      show_test_description("quality");
-    } else {
-      // console.log("--- next video ---")
-      // console.log(globalStatus.cur_video["source_video"])
-      recordTime();
-    }
+    recordTime();
+
+    // if (
+    //   globalStatus.videos_pairs_sequence.length == globalStatus.task_num/2 - 1
+    // ) { // flickering and quality
+    //   globalStatus.canMakeDecision = false;
+    //   $("#left-btn, #right-btn").attr("disabled", true);
+    //   $(`#left-${videoDomId}`).get(0).pause();
+    //   $(`#right-${videoDomId}`).get(0).pause();
+    //   $("#start-exp-btn").css("display", "inline-block")
+    //                     .attr("disabled",false);
+    //   show_test_description("quality");
+    // } else {
+    //   // console.log("--- next video ---")
+    //   // console.log(globalStatus.cur_video["source_video"])
+    //   recordTime();
+    // }
 }
 
 export function recordTime() {
@@ -120,11 +123,12 @@ export function show_test_description(test) {
     $("#reminder-modal-text").html(globalStatus.flickering_test_description);
     $("#question").html(globalStatus.flickering_question);
     $("#start-exp-btn").html("<h4>Click here to start the flicker test</h4>");
-  } else if (test == "quality") {
-    $("#reminder-modal-text").html(globalStatus.quality_test_description);
-    $("#question").html(globalStatus.distortion_question);
-    $("#start-exp-btn").html("<h4>Click here to start the quality test</h4>");
-  }
+  } 
+  // else if (test == "quality") {
+  //   $("#reminder-modal-text").html(globalStatus.quality_test_description);
+  //   $("#question").html(globalStatus.distortion_question);
+  //   $("#start-exp-btn").html("<h4>Click here to start the quality test</h4>");
+  // }
   
   $("#reminder-modal-btn").html("I got it!");
   $("#reminder-modal").modal("show");
@@ -150,7 +154,7 @@ function _extract_videos_url(videos_pairs) {
   let videos_original_url = [];
   let videos_pairs_sequence = [];
 
-  ["flickering", "distortion"].forEach(function(presentation,key1,arr1) {
+  ["flickering"].forEach(function(presentation,key1,arr1) {
     videos_pairs[presentation].forEach(function(value,key2,arr2){
       if (!videos_original_url.includes(value["videos_pair"][0])) {
         videos_original_url.push(value["videos_pair"][0]);
@@ -173,12 +177,17 @@ function _addAllVideosToDom() {
     globalStatus.videos_original_url, (video_ori_url) => _loadVideoAsync(video_ori_url)
   );
 
-  Promise.all(tasks).then(() => {
+  Promise.all(tasks)
+  .then(() => {
     _addVideosPairHtml();
     displayFirstVideo();
     clearTimeout(globalStatus.EXPIRE_TIMER);
     // console.log("----- clearTimer -----" + "download");
     _startCountExpireTime("wait");
+  })
+  .catch(error => {
+    // Handle the error here
+    console.error('An error occurred:', error);
   });
 }
 
@@ -203,7 +212,9 @@ function _loadVideoAsync(video_ori_url) {
         resolve();
       }
     }
-    req.onerror = function() {};
+    req.onerror = function() {
+      new Error('Failed to load video: ' + this.status)
+    };
     req.send();
   });
 }
@@ -211,7 +222,7 @@ function _loadVideoAsync(video_ori_url) {
 
 function _addVideosPairHtml() {
   let $video_pool = $("#video-pool");
-  ["distortion", "flickering"].forEach(function(presentation,key1,arr1) {
+  ["flickering"].forEach(function(presentation,key1,arr1) {
     globalStatus.videos_pairs[presentation].forEach(function(pair,key2,arr2){
       let ref_video = pair["ref_video"];
       let crf = pair["crf"];
