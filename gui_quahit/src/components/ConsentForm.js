@@ -28,6 +28,7 @@ export function passCF_action() {
 
 function _process_response(response) {
     if (response["status"] == "successful") {
+      console.log("Response ", response)
         _render_interface_text(response["data"]);
 
         if (getLocalData("didTraining") != "true") {

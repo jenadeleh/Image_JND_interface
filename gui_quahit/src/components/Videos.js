@@ -194,24 +194,22 @@ function _loadVideoAsync(video_ori_url) {
 function _addVideosPairHtml() {
   let $video_pool = $("#video-pool");
     
-  globalStatus.videos_pairs.forEach(function(pair,key2,arr2){
+  globalStatus.videos_pairs.forEach(function(pair, key2, arr2) {
     let ref_video = pair["ref_video"];
     let crf = pair["crf"];
-      
+    
     let url_left =  globalStatus.videos_url_mapping[pair["videos_pair"][0]];
     let url_right =  globalStatus.videos_url_mapping[pair["videos_pair"][1]];
 
     let video_pair_html = `
       <div class="video-cover"
         id=vc-${ref_video}-crf${crf}-Flickering
-        style="z-index:-1; 
-        visibility: hidden;"
+        style="z-index:-1; visibility: hidden;"
       >
         <video 
           id="left-${ref_video}-crf${crf}-Flickering"
           loop="loop" 
-          muted 
-          style="height: auto; width: auto;"
+          muted
         >
           <source src=${url_left} type='video/mp4'>
         </video>
@@ -219,14 +217,21 @@ function _addVideosPairHtml() {
         <video 
           id="right-${ref_video}-crf${crf}-Flickering" 
           loop="loop" 
-          muted 
-          style="height: auto; width: auto;"
+          muted
         >
           <source src=${url_right} type='video/mp4'>
         </video>
       </div>
-    `;
+    `
     $(video_pair_html).appendTo($video_pool);
+  });
+
+  // Adjust video dimensions after they are loaded
+  $("video").on("loadedmetadata", function() {
+    $(this).css({
+      "height": this.videoHeight + "px",
+      "width": this.videoWidth + "px"
+    });
   });
 }
 
