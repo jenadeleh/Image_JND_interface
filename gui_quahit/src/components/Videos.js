@@ -194,54 +194,40 @@ function _loadVideoAsync(video_ori_url) {
 function _addVideosPairHtml() {
   let $video_pool = $("#video-pool");
     
-    globalStatus.videos_pairs.forEach(function(pair,key2,arr2){
-      let ref_video = pair["ref_video"];
-      let crf = pair["crf"];
+  globalStatus.videos_pairs.forEach(function(pair,key2,arr2){
+    let ref_video = pair["ref_video"];
+    let crf = pair["crf"];
       
-      let url_left =  globalStatus.videos_url_mapping[pair["videos_pair"][0]];
-      let url_right =  globalStatus.videos_url_mapping[pair["videos_pair"][1]];
-      console.log("LEFT ", url_left)
-      console.log("RIGHT ", url_right)
+    let url_left =  globalStatus.videos_url_mapping[pair["videos_pair"][0]];
+    let url_right =  globalStatus.videos_url_mapping[pair["videos_pair"][1]];
 
-      console.log("Video Height ", globalStatus.video_h)
-      console.log("Video Width ", globalStatus.video_w)
+    let video_pair_html = `
+      <div class="video-cover"
+        id=vc-${ref_video}-crf${crf}-Flickering
+        style="z-index:-1; 
+        visibility: hidden;"
+      >
+        <video 
+          id="left-${ref_video}-crf${crf}-Flickering"
+          loop="loop" 
+          muted 
+          style="height: auto; width: auto;"
+        >
+          <source src=${url_left} type='video/mp4'>
+        </video>
 
-      let video_pair_html = `
-        <div class="video-cover"
-          id=vc-${ref_video}-crf${crf}-Flickering
-          style="z-index:-1; 
-          height: ${globalStatus.video_h}px; 
-          width: ${globalStatus.video_w * 2 + 20}px; 
-          visibility: hidden;"
-          >
-                
-          <video 
-            id="left-${ref_video}-crf${crf}-Flickering"
-            loop="loop" 
-            muted 
-            height="400" 
-            width="600"
-          >
-              <source src=${url_left} 
-                  type='video/mp4'
-              >
-          </video>
-
-          <video 
-            id="right-${ref_video}-crf${crf}-Flickering" 
-            loop="loop" 
-            muted 
-            height="400" 
-            width="600"
-          >
-            <source src=${url_right} 
-                type='video/mp4'
-            >
-          </video>
-        </div>
-      `
-      $(video_pair_html).appendTo($video_pool);
-    })
+        <video 
+          id="right-${ref_video}-crf${crf}-Flickering" 
+          loop="loop" 
+          muted 
+          style="height: auto; width: auto;"
+        >
+          <source src=${url_right} type='video/mp4'>
+        </video>
+      </div>
+    `;
+    $(video_pair_html).appendTo($video_pool);
+  });
 }
 
 function _startCountExpireTime(timeout_type){
