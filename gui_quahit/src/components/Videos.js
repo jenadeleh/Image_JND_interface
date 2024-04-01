@@ -8,8 +8,8 @@ import { displayEndHitPanel } from "./BtnActions";
 import {shuffle} from "../utils/Shuffle"
 
 export function reqLoadVideos(workerid, euid) {
-  $("#video-pool, #video-spinner").css("height", 1080)
-  .css("width", 1920);
+  $("#video-pool, #video-spinner").css("height", 480)
+  .css("width", 1260);
   
 
   if (globalStatus.session=="training") {
