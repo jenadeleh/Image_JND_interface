@@ -155,8 +155,8 @@ class QuaAssignment(models.Model): # qua HIT
     payamount = models.IntegerField("Dollar", default=0, editable=False)
     paid_time = models.DateTimeField(editable=False, blank=True, auto_now=True, null=True)
     comment = models.TextField(max_length=2048, default="", editable=False)
-    ishihara16 = models.IntegerField(default=0, blank=True)  
-    ishihara2 = models.IntegerField(default=0, blank=True) 
+    plate16_value = models.IntegerField(default=0, blank=True)  
+    plate2_value = models.IntegerField(default=0, blank=True) 
     
     def __str__(self):
         return str(self.auid)

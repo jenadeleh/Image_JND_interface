@@ -32,8 +32,8 @@ def record_qua_result(recv_data:dict) -> dict:
             , calibration = recv_data["data"]["cali_info"]
             , operation_system = recv_data["data"]["os_info"]
             , isPassQuiz = isPassQuiz
-            , ishihara2 = recv_data["data"]["ishihara2"]
-            , ishihara16 = recv_data["data"]["ishihara16"]
+            , plate2_value = recv_data["data"]["ishihara2"]
+            , plate16_value = recv_data["data"]["ishihara16"]
         ).save()
         print("AFTER SAFE ", QuaAssignment)
         print("SAVED SUCCESSFULLY")
