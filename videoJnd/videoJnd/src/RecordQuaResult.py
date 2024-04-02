@@ -20,23 +20,33 @@ def record_qua_result(recv_data:dict) -> dict:
         elif recv_isPassQuiz == "false":
             isPassQuiz = False
 
+        print(recv_data["data"]["ishihara2"])
+        print(recv_data["data"]["ishihara16"])
+
+
         QuaAssignment(
-            auid = auid
+              auid = auid
             , exp = exp_obj
             , workerid = recv_data["workerid"]
             , result = {"result": recv_data["data"]["result"]}
             , calibration = recv_data["data"]["cali_info"]
             , operation_system = recv_data["data"]["os_info"]
             , isPassQuiz = isPassQuiz
+            , ishihara2 = recv_data["data"]["ishihara2"]
+            , ishihara16 = recv_data["data"]["ishihara16"]
         ).save()
-
+        print("AFTER SAFE ", QuaAssignment)
+        print("SAVED SUCCESSFULLY")
+        
         exp_obj.qua_hit_count = exp_obj.qua_hit_count + 1
         exp_obj.save()
-
+       
 
         return {"status":"successful", "restype": "record_result", "code":auid}
 	
     except Exception as e:
+        print("ERROR HAPPEND")
+        print("Exception ", e)
         return {"status":"failed", "restype": "record_result", "error":"record_result error"}
 
 

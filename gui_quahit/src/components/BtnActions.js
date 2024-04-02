@@ -153,6 +153,9 @@ export function processHit() {
 
 export function adjustDist() {
   _displatStartTrainingMsg();
+  let ishiharaValue = document.getElementById('plateNumber2').value;
+  console.log(ishiharaValue)
+  storeLocalData("ishihara2", ishiharaValue)
   $("#dist-panel").css("display", "none");
   $("#hit-panel").css("display", "block");
   // actNextHitBtn();
@@ -336,7 +339,9 @@ function _sendResult() {
       "result":globalStatus.result,
       "isPassQuiz": tmp_isPassQuiz,
       "os_info": globalStatus.os_info,
-      "cali_info": cali_info
+      "cali_info": cali_info,
+      "ishihara2": getLocalData("ishihara2"),
+      "ishihara16": getLocalData("ishihara16")
     }
   };
 
@@ -374,6 +379,9 @@ document.getElementById('adjustPositionProceed').addEventListener('click', () =>
 
 document.getElementById('isihara-1-button').addEventListener('click', () => {
   // Updating the main page after the button was clicked
+  let ishiharaValue = document.getElementById('plateNumber1').value;
+  console.log(ishiharaValue)
+  storeLocalData('ishihara16', ishiharaValue);
   $("#isihara-1-panel").css("display", "none");
   $("#dist-panel").css("display", "inline");
   globalStatus.exp_status == "ishihara_2_panel"

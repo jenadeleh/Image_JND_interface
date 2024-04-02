@@ -3,7 +3,7 @@ from pathlib import Path
 import shutil
 
 if __name__ == "__main__":
-    #hit = "studyhit"
+    # hit = "studyhit"
     hit = "quahit"
 
     print(hit)
