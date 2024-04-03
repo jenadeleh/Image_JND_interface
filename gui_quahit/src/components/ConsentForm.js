@@ -38,6 +38,8 @@ function _process_response(response) {
         }
 
     } else if (response["status"] == "failed") {
+        // console.log("MORE LIKELY response failed")
+        $("#screen-check").css("display", "none")
         $("#msg-panel").html(response["data"]).css("display", "inline");
         return response["data"];
     }

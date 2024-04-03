@@ -111,7 +111,6 @@ export function reso_warnings() {
 }
 
 export function showWarningCover(message) {
-    console.log("HERE")
     if (globalStatus.warning_status == "env") {
 
         $("#warning-cover").css("display", "inline-block").css("visibility", "visible");

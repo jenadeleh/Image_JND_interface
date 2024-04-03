@@ -23,7 +23,8 @@ export function submitCf(workerid) {
             storeLocalData("puid", puid);
             passCF_action();
         } else if (response["status"] == "failed") {
-            $("#msg-panel").html(response["data"]).css("display", "inline");
+           $("#dist-panel").css("display", "none")
+           $("#msg-panel").html(response["data"]).css("display", "inline");
             return response["data"];
         }
     }).catch(err => {actNextHitBtn();actNextHitBtn();
@@ -53,6 +54,7 @@ function _process_response(response) {
         globalStatus.ispexist = response["data"]["ispexist"];
 
     } else if (response["status"] == "failed") {
+        $("#dist-panel").css("display", "none")
         $("#msg-panel").html(response["data"]).css("display", "inline");
         return response["data"];
     }

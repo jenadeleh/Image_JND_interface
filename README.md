@@ -27,6 +27,14 @@ In directory ../video_jnd
 > pip install -r requirements.txt
 ```
 
+For MacOs there will be most likely an issue regarding webpack.
+
+Solution:
+```
+> npm i --save-dev html-webpack-plugin
+```
+
+
 Configure Django project <br />
 In directory ../video_jnd/videoJnd
 ```
