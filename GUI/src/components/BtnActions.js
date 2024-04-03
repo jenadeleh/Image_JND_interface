@@ -31,8 +31,10 @@ export function actStartExpBtn(e) {
 
 export function actDecisionBtn(e) {
   let decision = $(e.target).attr("data-decision");
-  addResultToCurVideo(decision);
-  processHit();
+  if (e.screenX !== 0 && e.screenY !== 0) {
+    addResultToCurVideo(decision);
+    processHit();
+  } 
 }
 
 export function actNextHitBtn() {

@@ -8,22 +8,23 @@ import { readInst, actStartExpBtn, adjustDist, addResultToCurVideo, processHit, 
 export function keyboardControl(){
     document.onkeyup = function (event) {
         var e = event || window.event;
-        var keyCode = e.keyCode || e.which || e.code;   
+        var keyCode = e.keyCode || e.which || e.code;
         switch (keyCode) {
+            case 13://space
             case 32://enter
                 if(globalStatus.exp_status == "inst_panel") {
-                    readInst();
+                    // readInst();
                 } else if(globalStatus.exp_status == "dist_panel") {
-                    adjustDist();
+                    // adjustDist();
                 } else if(globalStatus.exp_status == "decision" && $("#start-exp-btn").attr("disabled")!="disabled") {
                     // actStartExpBtn();
                 } else if(
                     globalStatus.exp_status == "next-hit-panel" && 
                     $("#next-hit-btn").prop("disabled") == false
                 ) {
-                    actNextHitBtn();
+                    // actNextHitBtn();
                 }
-            //     break;
+                break;
             
             case 37: // left arrow
                 if(
@@ -90,4 +91,3 @@ export function keyboardControl(){
         }
     }
 }
-

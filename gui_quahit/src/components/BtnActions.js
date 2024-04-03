@@ -31,6 +31,9 @@ export function actStartExpBtn(e) {
 }
 
 export function actDecisionBtn(e) {
+  console.log("SCREEN ", e.screenX, " ", e.screenY)
+  console.log(e.clientX, " ", e.clientY)
+  
   let decision = $(e.target).attr("data-decision");
   let gt = globalStatus.cur_video_pair["ground_truth"];
   let isCorrect = true;
@@ -47,7 +50,7 @@ export function actDecisionBtn(e) {
     // processHit(); // remove 
     if (isCorrect==false) {
       coaching(decision);
-    } else if (isCorrect==true) {
+    } else if (isCorrect==true && (e.screenX !== 0 && e.screenY !== 0)) {
       $("#hint").html(globalStatus.pass_training_question_text).css("display", "inline-block");
       $("#hint-frame").css("display", "inline-block");
       $("#try-again-btn").css("display", "none");
@@ -56,13 +59,16 @@ export function actDecisionBtn(e) {
         $("#hint-frame").css("display", "none");
         processHit();
       }, 1000*globalStatus.traing_pass_text_timeout);
-    }
+    } 
   } else {
     if (isCorrect==false) {
       globalStatus.failedQuizNum += 1;
     } 
-    addResultToCurVideo(decision);
-    processHit();
+
+    if (e.screenX !== 0 && e.screenY !== 0) {
+      addResultToCurVideo(decision);
+      processHit();
+    }
   }
 }
 
