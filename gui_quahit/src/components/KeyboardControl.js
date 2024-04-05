@@ -2,7 +2,7 @@ import * as $ from 'jquery';
 import { recordCaliStartTime, increase, decrease } from "./Calibration";
 import { getLocalData } from "../utils/ManageLocalData";
 import { globalStatus } from "./GlobalStatus";
-import { readInst, actStartExpBtn, adjustDist, addResultToCurVideo, processHit, actNextHitBtn } from "./BtnActions"
+import { readInst, actStartExpBtn, adjustDist, addResultToCurVideo, processHit, actNextHitBtn, actDecisionBtn } from "./BtnActions"
 
 
 export function keyboardControl(){
@@ -32,8 +32,10 @@ export function keyboardControl(){
                     globalStatus.canMakeDecision == true &&
                     globalStatus.isWarning == false
                 ) {
-                    addResultToCurVideo("L");
-                    processHit();
+                    // actDecisionBtn(e, "L")
+                    $("#left-btn").trigger("click"); // Trigger click on left button
+                    // addResultToCurVideo("L");
+                    // processHit();
                 }
                 break
 
@@ -43,8 +45,13 @@ export function keyboardControl(){
                     globalStatus.canMakeDecision == true &&
                     globalStatus.isWarning == false
                 ) {
-                    addResultToCurVideo("R");
-                    processHit();
+                    // actDecisionBtn(e, "R")
+                    console.log("Right BTN CLICKK")
+                    $("#right-btn").trigger("click"); // Trigger click on left button
+
+
+                    // addResultToCurVideo("R");
+                    // processHit();
                 }
                 break
             

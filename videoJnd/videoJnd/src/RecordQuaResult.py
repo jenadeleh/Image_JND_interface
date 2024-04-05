@@ -49,6 +49,17 @@ def record_qua_result(recv_data:dict) -> dict:
         print("Exception ", e)
         return {"status":"failed", "restype": "record_result", "error":"record_result error"}
 
+def is_quiz_passed(recv_data:dict) -> bool:
+
+    # Check if any objects are found
+    qua_obj = QuaAssignment.objects.filter(workerid=recv_data["workerid"]).order_by('-submit_time').first()
+
+    if(qua_obj.isPassQuiz):
+        return {"status":"success", "is_pass_quiz": qua_obj.isPassQuiz}      
+    else:
+        return {"status":"success", "is_pass_quiz": qua_obj.isPassQuiz}
+
+
 
 def _encode_decision(side_of_reference:str, decision:str) -> str:
     if decision == "R" or decision == "L":

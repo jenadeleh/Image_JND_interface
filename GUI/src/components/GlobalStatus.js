@@ -65,4 +65,5 @@ export const globalStatus = {
     wrong_browser_msg:"To enable all interface features, please use Firefox.",
     text_end_hit_no_avl:"",
     survey_btn_text:"",
+    didPass: false,
 }

@@ -45,7 +45,7 @@ export function _envCheck() {
         }
     } 
 
-    globalStatus.isCorrectEnv = globalStatus.isMaximizedBrowser && globalStatus.isTheSameBrowser && globalStatus.isNotZoomedBrowser;
+    globalStatus.isCorrectEnv = globalStatus.isMaximizedBrowser && globalStatus.isTheSameBrowser && globalStatus.isNotZoomedBrowser && globalStatus.didPass; 
     
     if (globalStatus.isCorrectEnv) {
         _hideWarningCover();
@@ -117,7 +117,17 @@ export function showWarningCover(message) {
 
         if (message=="correct_browser") {
             $("#warning-msg").html(globalStatus.wrong_browser_msg);
-        } else {
+        } else if(message=="not_passed_quiz"){
+            // const identifier = globalStatus.study_hit_url.split("/")
+            // let newUrl = getLocalData("studyHitUrl");
+            // console.log(newUrl)
+            // let newQuaHitUrl = newUrl.replace('/studyhit/', '/quahit/');
+            let url = "http://localhost:8000/quahit/"
+            // console.log(newQuaHitUrl)
+            $("#warning-msg").html("To take part in the main study, you need to pass the qualification test. Please go to :" + url);
+            // $("#warning-msg").html("To take part in the main study, you need to pass the qualification test. Please go to: ");
+        } 
+        else {
             $("#warning-msg").html(config.WARNING_MESSAGE[message]);
         }
         globalStatus.isWarning = true;

@@ -24,6 +24,12 @@ export function initGUI() {
       "action":"get_browser_msg",
     };
 
+    let another_send_data = {
+      "action":"is_quiz_passed", 
+      "workerid":getLocalData("workerid"),
+    };
+
+
     sendMsg(send_data).then(response => {
         if (response["status"] == "successful") {
           globalStatus.wrong_browser_msg = response["wrong_browser_msg"];
@@ -50,6 +56,19 @@ export function initGUI() {
           }
         }
     });
+
+  sendMsg(another_send_data).then(response => {
+    if (response["status"] == "success") {
+      if (response.is_pass_quiz === true) {
+        globalStatus.didPass = true;
+      } else if(response.is_pass_quiz === false){
+        globalStatus.didPass = false;
+        showWarningCover("not_passed_quiz")
+      }
+    } else {
+      $(".main").html("No experiment is availale now.<h2>")
+    }
+  });
 }
 
 

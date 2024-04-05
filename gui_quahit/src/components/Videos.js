@@ -88,6 +88,10 @@ export function displayNextVideo() {
 
     $(`#left-${videoDomId}`).get(0).play();
     $(`#right-${videoDomId}`).get(0).play();
+    setTimeout(() => {
+      globalStatus.canMakeDecision = true;
+  }, 500);    
+    
     recordTime();
 
       // console.log("--- next video ---")

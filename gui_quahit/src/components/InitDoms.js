@@ -12,7 +12,16 @@ export function initDoms() {
     });
     
     $('.decision-btn').on('click',(e)=> {
-        actDecisionBtn(e);
+        if(
+            globalStatus.exp_status == "decision" && 
+            globalStatus.canMakeDecision == true &&
+            globalStatus.isWarning == false
+        ){
+            actDecisionBtn(e);
+        } else {
+            console.log("Can not make decision")
+        }
+    
     });
 
     $('#next-hit-btn').on('click', (e)=> {

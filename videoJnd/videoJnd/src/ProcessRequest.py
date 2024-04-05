@@ -1,7 +1,7 @@
 import json
 from videoJnd.src.ReqVideos import req_videos
 from videoJnd.src.RecordResult import record_study_result
-from videoJnd.src.RecordQuaResult import record_qua_result
+from videoJnd.src.RecordQuaResult import record_qua_result, is_quiz_passed
 from videoJnd.src.ReqInstConsentF import req_inst_cf
 from videoJnd.src.UserRegister import user_register
 from videoJnd.src.ResourceMonitor import resource_monitor, add_idle_thread, release_resource
@@ -40,14 +40,17 @@ def process_request(request):
                       response = record_study_result(recv_data)
 
                   elif recv_data["action"] == "record_quiz_result":
-                    response = record_qua_result(recv_data)
+                      response = record_qua_result(recv_data)
 
                   elif recv_data["action"] == "get_browser_msg":
-                    interface_text = InterfaceText.objects.all()[0]
-                    response = {
+                      interface_text = InterfaceText.objects.all()[0]
+                      response = {
                         "status":"successful", 
                         "wrong_browser_msg":interface_text.wrong_browser_msg
-                    }
+                        }
+                  elif recv_data["action"] == "is_quiz_passed":
+                        print("here")
+                        response = is_quiz_passed(recv_data)
                   elif recv_data["action"] == "survey":
                         record_survey(recv_data)
 

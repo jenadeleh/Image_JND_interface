@@ -83,6 +83,7 @@ function _render_interface_text(response_data) {
   console.log(training_videos)
 
   storeLocalData("euid", euid);
+  storeLocalData("studyHitUrl", study_hit_url)
   globalStatus.download_time = download_time;
   globalStatus.wait_time = wait_time;
   globalStatus.training_description = training_description;

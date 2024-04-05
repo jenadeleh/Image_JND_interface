@@ -30,11 +30,10 @@ export function actStartExpBtn(e) {
   recordTime();
 }
 
-export function actDecisionBtn(e) {
-  console.log("SCREEN ", e.screenX, " ", e.screenY)
-  console.log(e.clientX, " ", e.clientY)
-  
-  let decision = $(e.target).attr("data-decision");
+export function actDecisionBtn(e, defaultDecision=null) {
+  globalStatus.canMakeDecision = false; 
+    
+  let decision = defaultDecision || $(e.target).attr("data-decision");
   let gt = globalStatus.cur_video_pair["ground_truth"];
   let isCorrect = true;
 
@@ -50,7 +49,7 @@ export function actDecisionBtn(e) {
     // processHit(); // remove 
     if (isCorrect==false) {
       coaching(decision);
-    } else if (isCorrect==true && (e.screenX !== 0 && e.screenY !== 0)) {
+    } else if (isCorrect==true) {
       $("#hint").html(globalStatus.pass_training_question_text).css("display", "inline-block");
       $("#hint-frame").css("display", "inline-block");
       $("#try-again-btn").css("display", "none");
@@ -103,6 +102,8 @@ export function tryAgainAction() {
   clearTimeout(globalStatus.SECOND_DURATION_TIMER);
   $("#hint-frame").css("display", "none");
   $("#left-btn, #right-btn").attr("disabled", false);
+  globalStatus.canMakeDecision = true; 
+
   setTimer();
 }
 
@@ -280,7 +281,6 @@ export function displayEndHitPanel() {
 //     return study_hit_url
 //   }
 
-  
 function _process_quiz_result() {
   // let study_hit_url = _gen_study_hit_url();
   globalStatus.isPassQuiz = (globalStatus.failedQuizNum <=globalStatus.failedQuizNumThr) ? true:false;
