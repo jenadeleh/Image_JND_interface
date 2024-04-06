@@ -50,7 +50,7 @@ export function initGUI() {
                     keyboardControl();
                     req_inst_cf();
                   } else {
-                    $(".main").html("<h2>You already participated in the experiment. No experiment is availale now.<h2>")
+                    $(".main").html("<h2>You already participated in the experiment. There is no subjective test running at the moment. We look forward to your participation in our future studies.<h2>")
                   }
               }
           }
