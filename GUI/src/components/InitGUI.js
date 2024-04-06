@@ -66,7 +66,7 @@ export function initGUI() {
         showWarningCover("not_passed_quiz")
       }
     } else {
-      $(".main").html("No experiment is availale now.<h2>")
+      $("#msg-panel").html(`<p><span style="font-size:28px"><strong>No experiment is available at the moment !</strong></span></p> <p><span style="font-size:18px">Thank you for your interest in our experiments. There is no subjective test running at the moment. We look forward to your participation in our future studies.</span></p>`)
     }
   });
 }
